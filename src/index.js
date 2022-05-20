@@ -30,6 +30,17 @@ app.get("/questions", async (req, res) => {
     }
 })
 
+app.get("/videos", async (req, res) => {
+    try {
+        const videos = await db.collection("videos").find().toArray();
+
+        res.send(videos);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+})
+
 app.listen(process.env.PORT || 5000, () => {
     console.log(`Connected and listening in the port ${process.env.PORT || 5000}`);
 })
